@@ -1,0 +1,42 @@
+This use case test composite transaction processing where a new key, winstonc,  is first saved, then an invalid key is used in search and causing the rollback. 
+
+composite expected outout:
+{"status":"Error","mesg":"Error during execution "}
+
+
+After the composite run, issue a search for the winstonc key. This should have rolled back. 
+{
+    "status": "Error",
+    "mesg": "Search: Key not found [winstonc] "
+}
+
+=====================================================================
+composite - curl command to import to postman
+=====================================================================
+
+
+curl --location 'localhost:9888/api/keyvaluestore/composite' \
+--header 'Content-Type: application/json' \
+--data '[
+    {
+        "key": "winstonc",
+        "action": "Save",
+        "payload": {
+            "first_name": "Winston",
+            "last_name": "Churchill",
+            "role": "Prime Minister"
+        }
+    },
+    {
+        "key": "abc",
+        "action": "Search"
+    }
+]'
+
+
+
+=====================================================================
+search - curl command to import to postman
+=====================================================================
+curl --location 'localhost:9888/api/keyvaluestore/winstonc'
+

@@ -1,0 +1,14 @@
+This use case simply saves a value to the store
+
+Save expected output: 
+{"status":"OK"}
+
+
+=====================================================================
+Save- - curl command to import to postman
+=====================================================================
+
+
+curl --location --request PUT 'localhost:9888/api/keyvaluestore/georgew' \
+--header 'Content-Type: text/plain' \
+--data '{"first_name": "George", "last_name": "Washington", "role": "President"}'

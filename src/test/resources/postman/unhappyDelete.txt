@@ -1,0 +1,15 @@
+This use case produces an error when trying to delete where the key to delete is not found 
+
+Search expected output: 
+{
+    "status": "Error",
+    "mesg": "Key not found"
+}
+
+
+=====================================================================
+Search - curl command to import to postman
+=====================================================================
+
+
+curl --location --request DELETE 'localhost:9888/api/keyvaluestore/winstonc'

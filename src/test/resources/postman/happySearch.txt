@@ -1,0 +1,26 @@
+This use case has two separate curl commands, one to save a new value and then to retrieve it. 
+
+Save expected output: 
+{"status":"OK"}
+
+Search expected output:
+{
+    "status": "OK",
+    "result": "{"first_name": "George", "last_name": "Washington", "role": "President"}"
+}
+
+
+=====================================================================
+Save- - curl command to import to postman
+=====================================================================
+
+curl --location --request PUT 'localhost:9888/api/keyvaluestore/georgew' \
+--header 'Content-Type: text/plain' \
+--data '{"first_name": "George", "last_name": "Washington", "role": "President"}'
+
+
+=====================================================================
+Search - curl command to import to postman
+=====================================================================
+
+curl --location 'localhost:9888/api/keyvaluestore/georgew'

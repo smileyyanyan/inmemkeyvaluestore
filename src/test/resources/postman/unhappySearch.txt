@@ -1,0 +1,12 @@
+This use case produces an error while saving
+
+Delete expected output:
+ 
+{"status":"Error","mesg":"Key not found"}
+
+
+=====================================================================
+Search - curl command to import to postman
+=====================================================================
+
+curl --location --request DELETE 'localhost:9888/api/keyvaluestore/abc'

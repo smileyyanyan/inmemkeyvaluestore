@@ -1,0 +1,14 @@
+This use case produces an error while saving
+
+Save expected output: 
+{"status":"Error","mesg":"Invalid JSON"}
+
+
+=====================================================================
+Save - curl command to import to postman
+=====================================================================
+
+
+curl --location --request PUT 'localhost:9888/api/keyvaluestore/georgew' \
+--header 'Content-Type: text/plain' \
+--data '{"first_name": "George" "last_name": "Washington", "role": "President"}'

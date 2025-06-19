@@ -1,0 +1,5 @@
+For each file, click import in Postman and paste the curl command in the text box
+
+Each test should be independent and does not require others to be run first, The first section of the test file gives explanation of the usecase and the expected output. 
+
+The curl command section is the code to import into postman. 

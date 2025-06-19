@@ -1,0 +1,37 @@
+This usecase save, search, and deletes the same key and should produce the following output:
+
+PUT winstonc {"first_name":"Winston","last_name":"Churchill","role":"Prime Minister"}
+{"status":"OK"}
+GET winstonc
+{"status":"OK","result":"{"first_name":"Winston","last_name":"Churchill","role":"Prime Minister"}"}
+DELETE winstonc
+{"status":"OK"}
+
+
+=====================================================================
+curl command to import to postman
+=====================================================================
+
+
+
+curl --location 'localhost:9888/api/keyvaluestore/composite' \
+--header 'Content-Type: application/json' \
+--data '[
+    {
+        "key": "winstonc",
+        "action": "Save",
+        "payload": {
+            "first_name": "Winston",
+            "last_name": "Churchill",
+            "role": "Prime Minister"
+        }
+    },
+    {
+        "key": "winstonc",
+        "action": "Search"
+    },
+    {
+        "key": "winstonc",
+        "action": "Delete"
+    }    
+]'
