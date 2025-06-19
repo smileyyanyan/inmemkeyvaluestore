@@ -47,7 +47,7 @@ The KeyValueStoreService processes each request from the controller. Any data an
 
 #####  KeyValueRepository
 
-The KeyValueRepository interface defines operations to the keyvalue store. The RDBMSKeyValueRepository is responsible for database calls and transaction handling using JDBC. The MemStoreKeyValueRepository uses its own transaction handling. For each request, the repository creates a KeyValueStoreResponse object which contains the status of the request and any errors that may have occurred. 
+The KeyValueRepository interface defines operations to the keyvalue store. There are two implementations of the repository, one uses an RDBMS database and the other uses an in-memory hash map. The RDBMSKeyValueRepository is responsible for database calls and transaction handling using JDBC. The MemStoreKeyValueRepository uses its own transaction handling. For each request, the repository creates a KeyValueStoreResponse object which contains the status of the request and any errors that may have occurred. 
 
 ### Database
 
@@ -71,6 +71,17 @@ For the search request, if a search key is not found, an error is raised. If sea
 
 Custom transaction handling is used for the MemStoreKeyValueRepository implementation. When multiple requests are received, a transaction object is created for each request in the order it is received. To commit the transactions, a minimum heap structure is used to store the transactions where the sequence number is used to determine the heap order. The commitment is executed in order. For rollback, a max heap is used to order the transactions in reverse order and the last committed transaction is rolled back first. 
 
+##### Repository Selection Tradeoffs
+
+* Scalability  
+
+The in-memory hashmap can only provide limited vertical scaling while the DBMS implementation can be scaled horizontally by adding more DB instances with sharding. 
+
+* Maintainability 
+
+Using JDBC transaction management vs. custom built transaction is easier to maintain with its wide usage. 
+The CRUD operations in the in-memory implementation are easier to understand than SQL with parameter substitution. 
+    
 
 ### Sample Request and Responses
 
