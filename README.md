@@ -165,8 +165,8 @@ The response contains the result of each request along with the original request
 
 The dockerfile exposes port 9888.
 
-  * docker build -t haus/keyvalue-spring-boot-docker .
-  * docker run -p 9888:8080 haus/keyvalue-spring-boot-docker
+  * docker build -t spring/keyvalue-spring-boot-docker .
+  * docker run -p 9888:8080 spring/keyvalue-spring-boot-docker
 
 
 
