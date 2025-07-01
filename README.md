@@ -81,20 +81,20 @@ Custom transaction handling is used for the MemStoreKeyValueRepository implement
 ### Sample Request and Responses
 
 ##### Save a name/value pair to the store
-PUT: localhost:9888/api/keyvaluestore/winstonC  
-Payload: {"first_name": "Winston", "last_name": "Churchill", "role": "Prime Minister"}  
+PUT: localhost:9888/api/keyvaluestore/johns  
+Payload: {"first_name": "John", "last_name": "Smith", "role": "Developer"}  
 Response: {"status":"OK"}  
 
-    curl --location --request PUT 'localhost:9888/api/keyvaluestore/winstonC' \
+    curl --location --request PUT 'localhost:9888/api/keyvaluestore/johns' \
     --header 'Content-Type: text/plain' \
-    --data '{"first_name": "Winston", "last_name": "Churchill", "role": "Prime Minister"}'
+    --data '{"first_name": "John", "last_name": "Smith", "role": "Developer"}'
 
 ##### Get the value of a key from the store
-GET: localhost:9888/api/keyvaluestore/winstonC  
+GET: localhost:9888/api/keyvaluestore/johns  
 Response:  
 {  
     "status": "OK",  
-    "result": "{"first_name": "Winston", "last_name": "Churchill", "role": "Prime Minister"}"  
+    "result": "{"first_name": "John", "last_name": "Smith", "role": "Developer"}"  
 }  
 
 When the key is not found:
@@ -104,12 +104,12 @@ Response:
     "mesg": "Key not found"
 }
 
-    curl --location 'localhost:9888/api/keyvaluestore/winstonC' \
+    curl --location 'localhost:9888/api/keyvaluestore/johns' \
     --header 'Content-Type: application/json' \
     --data ''
 
 ##### Delete the value of a key from the store 
-DELETE: localhost:9888/api/keyvaluestore/winstonC  
+DELETE: localhost:9888/api/keyvaluestore/johns  
 Response: {"status":"OK"}  
 
 When the key is not found:
@@ -119,7 +119,7 @@ Response:
     "mesg": "Key not found"
 }
 
-    curl --location --request DELETE 'localhost:9888/api/keyvaluestore/winstonC'
+    curl --location --request DELETE 'localhost:9888/api/keyvaluestore/johns'
 
 ##### Composite Request  
 
@@ -129,30 +129,30 @@ The compoiste request allows multiple requests to be processed at once within th
     --header 'Content-Type: application/json' \
     --data '[
     {
-        "key": "georgew",
+        "key": "georgec",
         "action": "Save",
         "payload": {
             "first_name": "George",
-            "last_name": "Washington",
-            "role": "President"
+            "last_name": "Clooney",
+            "role": "Actor"
         }
     },
     {
-        "key": "georgew",
+        "key": "georgec",
         "action": "Search"
     },
     {
-        "key": "georgew",
+        "key": "georgec",
         "action": "Delete"
     }
     ]'
 
 The response contains the result of each request along with the original request and payload. 
 
-    PUT georgew {"first_name":"George","last_name":"Washington","role":"President"}
+    PUT georgew {"first_name":"George","last_name":"Clooney","role":"Actor"}
     {"status":"OK"}
     GET georgew
-    {"status":"OK","result":"{"first_name":"George","last_name":"Washington","role":"President"}"}
+    {"status":"OK","result":"{"first_name":"George","last_name":"Clooney","role":"Actor"}"}
     DELETE georgew
     {"status":"OK"}
 
