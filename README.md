@@ -72,15 +72,10 @@ For the search request, if a search key is not found, an error is raised. If sea
 Custom transaction handling is used for the MemStoreKeyValueRepository implementation. When multiple requests are received, a transaction object is created for each request in the order it is received. To commit the transactions, a minimum heap structure is used to store the transactions where the sequence number is used to determine the heap order. The commitment is executed in order. For rollback, a max heap is used to order the transactions in reverse order and the last committed transaction is rolled back first. 
 
 ##### Repository Selection Tradeoffs
-
-* Scalability  
-
-The in-memory hashmap can only provide limited vertical scaling while the DBMS implementation can be scaled horizontally by adding more DB instances with sharding. 
-
-* Maintainability 
-
-Using JDBC transaction management vs. custom built transaction is easier to maintain with its wide usage. 
-The CRUD operations in the in-memory implementation are easier to understand than SQL with parameter substitution. 
+| Selection| Maintainability  | Scalability |
+| :---:   | :---: | :---: | 
+| in-memory | easier to understand   | can only provide limited vertical scaling|
+| DBMS | Using JDBC transaction management is easier and more robust than custom built transaction | Horizontal scaling is possible with different DB cluster deployment stragegies such as sharding or replication |
     
 
 ### Sample Request and Responses
